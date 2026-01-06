@@ -18,8 +18,13 @@ void insert(int new_data) {
     struct Node* new_node = new Node(); // create a new node
     new_node -> data = new_data; // assign the data
     new_node -> next = head; // give the next pointer to the head
-    if (head != NULL) head -> prev = new_node; // set the prev pointer as NULL as it is head node
     new_node -> prev = NULL;
+    if (head != NULL) {
+        head -> prev = new_node; // set the prev pointer as NULL as it is head node
+
+    } else {
+        tail = new_node;
+    }
     head = new_node;
 }
 
@@ -60,11 +65,11 @@ void insertAtEnd(int new_data) {
     struct Node* new_node = new Node();
     new_node -> data = new_data;
     new_node -> next = NULL;
-   // if (tail == NULL) {
-   //     new_node -> prev = NULL;
-   //     head = tail = new_node;
-   //     return;
-   // }
+    if (tail == NULL) {
+        new_node -> prev = NULL;
+        head = tail = new_node;
+        return;
+    }
 
     new_node -> prev = tail;
     tail -> next = new_node;
@@ -90,6 +95,7 @@ void display(){
 
 
 int main() {
+    insertAtEnd(1);
     insert(2);
     insert(8);
     insert(7);
@@ -100,6 +106,8 @@ int main() {
     insertAtSpecificPosition(9, 4);
     display();
     insertAtEnd(3);
+    display();
+    insertAtEnd(4);
     display();
 }
 
