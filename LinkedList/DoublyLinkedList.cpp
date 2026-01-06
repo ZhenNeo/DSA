@@ -77,6 +77,46 @@ void insertAtEnd(int new_data) {
 }
 
 
+// Remove node at head
+void removeFirst() {
+    if (head == NULL) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    struct Node* temp = head;
+    head = head -> next;
+
+    if (head != NULL) {
+        head -> prev = NULL;
+    } else { // list become empty
+        tail = NULL;
+    }
+    
+    delete temp;
+}
+
+
+// Remove node at tail
+void removeLast(){
+    if (tail == NULL) {
+        cout << "list is empty" << endl;
+        return;
+    }
+
+    struct Node* temp = tail;
+    tail = tail -> prev;
+
+    if (tail != NULL) {
+        tail -> next = NULL;
+    } else { // List becomes empty
+        head = NULL;
+    }
+    
+    delete temp;
+}
+
+
 // Display the entire list
 void display(){
     struct Node* ptr = head;
@@ -109,5 +149,10 @@ int main() {
     display();
     insertAtEnd(4);
     display();
+    removeFirst();
+    display();
+    removeLast();
+    display();
+
 }
 
